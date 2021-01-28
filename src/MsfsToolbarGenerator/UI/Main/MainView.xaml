@@ -3,7 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:designViewModels="clr-namespace:De.Berndnet2000.MsfsToolbarGenerator.UI.Main.DesignViewModels"
         mc:Ignorable="d"
         Title="MainView" Height="450" Width="800">
-    <Grid />
+    <d:DesignProperties.DataContext>
+        <designViewModels:MainViewDesignViewModel />
+    </d:DesignProperties.DataContext>
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Workspace:" />
+            <Separator Width="5" Visibility="Hidden" />
+            <TextBlock Text="{Binding Path=WorkspaceFolder}" />
+            <Separator Width="5" Visibility="Hidden" />
+            <Button Content="..." Command="{Binding Path=SelectWorkspaceFolderCommand}" />
+        </StackPanel>
+    </StackPanel>
 </Window>
