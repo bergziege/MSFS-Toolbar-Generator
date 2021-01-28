@@ -1,7 +1,0 @@
-<Project Version="2" Name="fs-base-ingamepanels-scratch" FolderName="Packages">
-	<OutputDirectory>.</OutputDirectory>
-	<TemporaryOutputDirectory>_PackageInt</TemporaryOutputDirectory>
-	<Packages>
-		<Package>PackageDefinitions\fs-base-ingamepanels-scratch.xml</Package>
-	</Packages>
-</Project>

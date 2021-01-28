@@ -1,5 +1,5 @@
 ﻿/** This mixin makes a single line element fit exactly on the Roboto font for easier integration. */
-ingame-ui#ScratchPanel {
+ingame-ui##Template#Panel {
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -8,7 +8,7 @@ ingame-ui#ScratchPanel {
   width: 100% !important;
   /*border: 2px solid blue !important;*/
 }
-ingame-ui#ScratchPanel #ScratchPanelWrap {
+ingame-ui##Template#Panel ##Template#PanelWrap {
   display: flex;
   flex-direction: column;
   width: 100% !important;
@@ -20,17 +20,17 @@ ingame-ui#ScratchPanel #ScratchPanelWrap {
   align-items: stretch !important;
   flex: 1 1 auto !important;
 }
-ingame-ui#ScratchPanel #ScratchPanelWrap #ScratchPanelIframe {
+ingame-ui##Template#Panel ##Template#PanelWrap ##Template#PanelIframe {
   flex: 1 1 auto !important;
   border: 0;
 }
-ingame-ui#ScratchPanel #MainDisplay.hidden {
+ingame-ui##Template#Panel #MainDisplay.hidden {
   display: none;
 }
-ingame-ui#ScratchPanel #Footer.hidden {
+ingame-ui##Template#Panel #Footer.hidden {
   display: none;
 }
-ingame-ui#ScratchPanel .ingameUiContent {
+ingame-ui##Template#Panel .ingameUiContent {
   /*border: 2px solid green !important;*/
   display: flex !important;
   flex-direction: column !important;
@@ -42,7 +42,7 @@ ingame-ui#ScratchPanel .ingameUiContent {
   align-items: stretch !important;
   flex: 1 1 auto !important;
 }
-ingame-ui#ScratchPanel .ingameUiWrapper {
+ingame-ui##Template#Panel .ingameUiWrapper {
   /*border: 2px solid yellow !important;*/
   display: flex !important;
   flex-direction: column !important;

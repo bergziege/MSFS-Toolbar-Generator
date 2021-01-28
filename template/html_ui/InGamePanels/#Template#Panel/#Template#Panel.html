@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/SCSS/common.css" />
-    <link rel="stylesheet" href="ScratchPanel.css" />
+    <link rel="stylesheet" href="#Template#Panel.css" />
 
     <!--<script src="http://localhost:9222/scripts/launcher.js" data-origin="debugger"></script>-->
 
@@ -20,14 +20,14 @@
     <link rel="import" href="/templates/ingameUiHeader/ingameUiHeader.html" />
     <link rel="import" href="/templates/NewListButton/NewListButton.html" />
 
-    <script type="text/javascript" src="ScratchPanel.js"></script>
+    <script type="text/javascript" src="#Template#Panel.js"></script>
 </head>
 
 <body class="border-box">
-    <ingamepanel-scratch>
-        <ingame-ui id="ScratchPanel" panel-id="PANEL_SCRATCH_PANEL" title="" class="ingameUiFrame panelInvisible" content-fit="true" min-width="160" min-height="90">
-            <div id="ScratchPanelWrap">
-                <iframe id="ScratchPanelIframe" src=""></iframe>
+    <ingamepanel-#template#>
+        <ingame-ui id="#Template#Panel" panel-id="PANEL_#TEMPLATE#_PANEL" title="" class="ingameUiFrame panelInvisible" content-fit="true" min-width="160" min-height="90">
+            <div id="#Template#PanelWrap">
+                <iframe id="#Template#PanelIframe" src=""></iframe>
             </div>
             <section id="MainDisplay">
                 header
@@ -36,6 +36,6 @@
                 footer
             </section>
         </ingame-ui>
-    </ingamepanel-scratch>
+    </ingamepanel-#template#>
 </body>
 </html>

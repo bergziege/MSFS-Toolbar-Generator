@@ -1,16 +1,16 @@
-<AssetPackage Name="fs-base-ingamepanels-scratch" Version="0.1.0">
+<AssetPackage Name="fs-base-ingamepanels-##template" Version="0.1.0">
 	<ItemSettings>
 		<ContentType>SPB</ContentType>
-		<Title>fs-base-ingamepanels-scratch</Title>
+		<Title>fs-base-ingamepanels-#template#</Title>
 		<Manufacturer/>
-		<Creator>Maximus</Creator>
+		<Creator>debgz</Creator>
 	</ItemSettings>
 	<Flags>
 		<VisibleInStore>false</VisibleInStore>
 		<CanBeReferenced>false</CanBeReferenced>
 	</Flags>
 	<AssetGroups>
-		<AssetGroup Name="fs-base-ingamepanels-scratch">
+		<AssetGroup Name="fs-base-ingamepanels-#template">
 			<Type>SPB</Type>
 			<Flags>
 				<FSXCompatibility>false</FSXCompatibility>

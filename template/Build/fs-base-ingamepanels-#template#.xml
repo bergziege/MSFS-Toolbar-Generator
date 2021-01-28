@@ -1,0 +1,7 @@
+<Project Version="2" Name="fs-base-ingamepanels-#template#" FolderName="Packages">
+	<OutputDirectory>.</OutputDirectory>
+	<TemporaryOutputDirectory>_PackageInt</TemporaryOutputDirectory>
+	<Packages>
+		<Package>PackageDefinitions\fs-base-ingamepanels-#template#.xml</Package>
+	</Packages>
+</Project>
