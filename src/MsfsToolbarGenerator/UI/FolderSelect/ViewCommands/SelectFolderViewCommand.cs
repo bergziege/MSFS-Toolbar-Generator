@@ -1,11 +1,12 @@
-﻿using System.Windows.Forms;
+﻿using System.IO;
+using System.Windows.Forms;
 
 namespace De.Berndnet2000.MsfsToolbarGenerator.UI.FolderSelect.ViewCommands {
     public class SelectFolderViewCommand : ISelectFolderViewCommand {
-        public string Execute() {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
+        public DirectoryInfo Execute() {
+            var fbd = new FolderBrowserDialog();
             fbd.ShowDialog();
-            return fbd.SelectedPath;
+            return new DirectoryInfo(fbd.SelectedPath);
         }
     }
 }

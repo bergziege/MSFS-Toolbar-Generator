@@ -9,6 +9,9 @@
     <d:DesignProperties.DataContext>
         <designViewModels:MainViewDesignViewModel />
     </d:DesignProperties.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Template:" />
@@ -24,5 +27,8 @@
             <Separator Width="5" Visibility="Hidden" />
             <Button Content="..." Command="{Binding Path=SelectWorkspaceFolderCommand}" />
         </StackPanel>
+        <Button Content="Start" Command="{Binding Path=StartToolbarCreationCommand}" />
+        <ProgressBar IsIndeterminate="True"
+                     Visibility="{Binding Path=IsCreationInProgress, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </StackPanel>
 </Window>
