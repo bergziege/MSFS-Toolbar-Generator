@@ -11,6 +11,13 @@
     </d:DesignProperties.DataContext>
     <StackPanel>
         <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Template:" />
+            <Separator Width="5" Visibility="Hidden" />
+            <TextBlock Text="{Binding Path=TemplateFolder}" />
+            <Separator Width="5" Visibility="Hidden" />
+            <Button Content="..." Command="{Binding Path=SelectTemplateFolderCommand}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
             <TextBlock Text="Workspace:" />
             <Separator Width="5" Visibility="Hidden" />
             <TextBlock Text="{Binding Path=WorkspaceFolder}" />
