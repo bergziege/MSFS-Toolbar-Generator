@@ -1,13 +1,15 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using De.Berndnet2000.MsfsToolbarGenerator.Wrapper;
+using MsfsToolbarGenerator.Services.Wrapper;
 
-namespace De.Berndnet2000.MsfsToolbarGenerator.Services {
+namespace MsfsToolbarGenerator.Services.Services.Impl {
     public class ToolbarCreationService : IToolbarCreationService {
         private readonly IFileSystem _fileSystem;
+        private readonly ITokenizer _tokenizer;
 
-        public ToolbarCreationService(IFileSystem fileSystem) {
+        public ToolbarCreationService(IFileSystem fileSystem, ITokenizer tokenizer) {
             _fileSystem = fileSystem;
+            _tokenizer = tokenizer;
         }
 
         public async Task CreateToolbarAsync(DirectoryInfo templateDirectory, DirectoryInfo workspaceDirectory) {
@@ -15,7 +17,10 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.Services {
 
             foreach (var templateFile in allTemplateFiles) {
                 var relativePath = templateFile.FullName.Replace(templateDirectory.FullName, "");
-                relativePath = ReplaceTokensWith(relativePath, "EBAG");
+                relativePath = _tokenizer.Replace(relativePath, "EBAG");
+                if (relativePath.StartsWith(Path.DirectorySeparatorChar)) {
+                    relativePath = relativePath.Substring(1, relativePath.Length - 1);
+                }
                 var destinationFullPath = Path.Combine(workspaceDirectory.FullName, relativePath);
 
                 if (templateFile.Extension.Contains("jpg")) {
@@ -24,21 +29,12 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.Services {
                 else {
                     var fileContent = await _fileSystem.ReadAllTextAsync(templateFile.FullName);
 
-                    fileContent = ReplaceTokensWith(fileContent, "EBAG");
-                    DirectoryInfo? destination = new FileInfo(destinationFullPath).Directory;
-                    if (!destination.Exists) {
-                        destination.Create();
-                    }
+                    fileContent = _tokenizer.Replace(fileContent, "EBAG");
+                    var destination = new FileInfo(destinationFullPath).Directory;
+                    if (!destination.Exists) destination.Create();
                     await _fileSystem.WriteAllTextAsync(destinationFullPath, fileContent);
                 }
             }
-        }
-
-        private string ReplaceTokensWith(string value, string replacingValue) {
-            value = value.Replace("#template#", replacingValue.ToLower());
-            value = value.Replace("#Template#", replacingValue);
-            value = value.Replace("#TEMPLATE#", replacingValue.ToUpper());
-            return value;
         }
     }
 }

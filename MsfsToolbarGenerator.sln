@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsfsToolbarGenerator", "src\MsfsToolbarGenerator\MsfsToolbarGenerator.csproj", "{4C40E4C3-86D9-4CE6-AA5D-EE9CA86B4345}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsfsToolbarGenerator.Tests", "tests\MsfsToolbarGenerator.Tests\MsfsToolbarGenerator.Tests.csproj", "{AE494860-A4BD-41BA-9128-E7EB4A13CEFC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsfsToolbarGenerator.Services", "src\MsfsToolbarGenerator.Services\MsfsToolbarGenerator.Services.csproj", "{0E02F941-D482-4028-9754-00A29E58787C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{4C40E4C3-86D9-4CE6-AA5D-EE9CA86B4345}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C40E4C3-86D9-4CE6-AA5D-EE9CA86B4345}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C40E4C3-86D9-4CE6-AA5D-EE9CA86B4345}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE494860-A4BD-41BA-9128-E7EB4A13CEFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE494860-A4BD-41BA-9128-E7EB4A13CEFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE494860-A4BD-41BA-9128-E7EB4A13CEFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE494860-A4BD-41BA-9128-E7EB4A13CEFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E02F941-D482-4028-9754-00A29E58787C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E02F941-D482-4028-9754-00A29E58787C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E02F941-D482-4028-9754-00A29E58787C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E02F941-D482-4028-9754-00A29E58787C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

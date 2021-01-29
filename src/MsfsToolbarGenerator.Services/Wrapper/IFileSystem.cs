@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace De.Berndnet2000.MsfsToolbarGenerator.Wrapper {
+namespace MsfsToolbarGenerator.Services.Wrapper {
     public interface IFileSystem {
         IList<FileInfo> GetAllFilesInDirectory(DirectoryInfo directory);
         Task<string> ReadAllTextAsync(string file);
