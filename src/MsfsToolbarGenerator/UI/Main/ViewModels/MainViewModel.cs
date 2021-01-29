@@ -15,6 +15,7 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels {
         private ReactiveCommand<Unit, Unit> _startToolbarCreationCommand;
         private DirectoryInfo _templateFolder;
         private DirectoryInfo _workspaceFolder;
+        private string _toolbarName;
 
         public MainViewModel(ISelectFolderViewCommand selectFolderViewCommand,
             IToolbarCreationService toolbarCreationService) {
@@ -65,9 +66,15 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels {
             get { return _startToolbarCreationCommand ??= ReactiveCommand.CreateFromTask(OnStartCreateToolbarAsync); }
         }
 
+        public string ToolbarName
+        {
+            get => _toolbarName;
+            set => this.RaiseAndSetIfChanged(ref _toolbarName, value);
+        }
+
         private async Task OnStartCreateToolbarAsync() {
             IsCreationInProgress = true;
-            await _toolbarCreationService.CreateToolbarAsync(TemplateFolder, WorkspaceFolder);
+            await _toolbarCreationService.CreateToolbarAsync(TemplateFolder, WorkspaceFolder, ToolbarName);
             IsCreationInProgress = false;
         }
     }

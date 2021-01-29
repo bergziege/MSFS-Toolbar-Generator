@@ -10,5 +10,6 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main {
         ReactiveCommand<Unit, Unit> SelectTemplateFolderCommand { get; }
         bool IsCreationInProgress { get; }
         ReactiveCommand<Unit, Unit> StartToolbarCreationCommand { get; }
+        string ToolbarName { get; set; }
     }
 }

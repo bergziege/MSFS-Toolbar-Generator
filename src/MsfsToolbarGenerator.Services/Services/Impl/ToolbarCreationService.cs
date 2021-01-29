@@ -12,15 +12,15 @@ namespace MsfsToolbarGenerator.Services.Services.Impl {
             _tokenizer = tokenizer;
         }
 
-        public async Task CreateToolbarAsync(DirectoryInfo templateDirectory, DirectoryInfo workspaceDirectory) {
+        public async Task CreateToolbarAsync(DirectoryInfo templateDirectory, DirectoryInfo workspaceDirectory,
+            string toolbarName) {
             var allTemplateFiles = _fileSystem.GetAllFilesInDirectory(templateDirectory);
 
             foreach (var templateFile in allTemplateFiles) {
                 var relativePath = templateFile.FullName.Replace(templateDirectory.FullName, "");
-                relativePath = _tokenizer.Replace(relativePath, "EBAG");
-                if (relativePath.StartsWith(Path.DirectorySeparatorChar)) {
+                relativePath = _tokenizer.Replace(relativePath, toolbarName);
+                if (relativePath.StartsWith(Path.DirectorySeparatorChar))
                     relativePath = relativePath.Substring(1, relativePath.Length - 1);
-                }
                 var destinationFullPath = Path.Combine(workspaceDirectory.FullName, relativePath);
 
                 if (templateFile.Extension.Contains("jpg")) {
@@ -29,7 +29,7 @@ namespace MsfsToolbarGenerator.Services.Services.Impl {
                 else {
                     var fileContent = await _fileSystem.ReadAllTextAsync(templateFile.FullName);
 
-                    fileContent = _tokenizer.Replace(fileContent, "EBAG");
+                    fileContent = _tokenizer.Replace(fileContent, toolbarName);
                     var destination = new FileInfo(destinationFullPath).Directory;
                     if (!destination.Exists) destination.Create();
                     await _fileSystem.WriteAllTextAsync(destinationFullPath, fileContent);

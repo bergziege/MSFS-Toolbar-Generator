@@ -1,4 +1,4 @@
-<AssetPackage Name="fs-base-ingamepanels-##template" Version="0.1.0">
+<AssetPackage Name="fs-base-ingamepanels-#template#" Version="0.1.0">
 	<ItemSettings>
 		<ContentType>SPB</ContentType>
 		<Title>fs-base-ingamepanels-#template#</Title>
@@ -10,7 +10,7 @@
 		<CanBeReferenced>false</CanBeReferenced>
 	</Flags>
 	<AssetGroups>
-		<AssetGroup Name="fs-base-ingamepanels-#template">
+		<AssetGroup Name="fs-base-ingamepanels-#template#">
 			<Type>SPB</Type>
 			<Flags>
 				<FSXCompatibility>false</FSXCompatibility>

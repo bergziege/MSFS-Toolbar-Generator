@@ -3,6 +3,6 @@ using System.Threading.Tasks;
 
 namespace MsfsToolbarGenerator.Services.Services {
     public interface IToolbarCreationService {
-        Task CreateToolbarAsync(DirectoryInfo templateDirectory, DirectoryInfo workspaceDirectory);
+        Task CreateToolbarAsync(DirectoryInfo templateDirectory, DirectoryInfo workspaceDirectory, string toolbarName);
     }
 }

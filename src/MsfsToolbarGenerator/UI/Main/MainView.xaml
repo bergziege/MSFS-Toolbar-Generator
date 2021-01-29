@@ -27,6 +27,10 @@
             <Separator Width="5" Visibility="Hidden" />
             <Button Content="..." Command="{Binding Path=SelectWorkspaceFolderCommand}" />
         </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Toolbar Name:" />
+            <TextBox Text="{Binding Path=ToolbarName}" MinWidth="150"/>
+        </StackPanel>
         <Button Content="Start" Command="{Binding Path=StartToolbarCreationCommand}" />
         <ProgressBar IsIndeterminate="True"
                      Visibility="{Binding Path=IsCreationInProgress, Converter={StaticResource BooleanToVisibilityConverter}}" />
