@@ -83,7 +83,7 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels {
         private async Task OnPackAsync() {
             IsCreationInProgress = true;
             await _layoutCreationService.CreateLayout(WorkspaceFolder);
-            IsCreationInProgress = true;
+            IsCreationInProgress = false;
         }
 
         private async Task OnStartCreateToolbarAsync() {
