@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using MsfsToolbarGenerator.Services.Wrapper;
+using De.Berndnet2000.MsfsToolbarGenerator.Wrapper;
 
-namespace MsfsToolbarGenerator.Services.Services.Impl {
+namespace De.Berndnet2000.MsfsToolbarGenerator.Services.Impl {
     public class ToolbarCreationService : IToolbarCreationService {
         private readonly IFileSystem _fileSystem;
         private readonly ITokenizer _tokenizer;

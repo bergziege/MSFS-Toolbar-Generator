@@ -1,6 +1,5 @@
+using De.Berndnet2000.MsfsToolbarGenerator.Services.Impl;
 using FluentAssertions;
-using MsfsToolbarGenerator.Services;
-using MsfsToolbarGenerator.Services.Services.Impl;
 using NUnit.Framework;
 
 namespace MsfsToolbarGenerator.Tests {

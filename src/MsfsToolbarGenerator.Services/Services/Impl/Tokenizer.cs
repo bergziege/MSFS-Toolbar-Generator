@@ -1,4 +1,4 @@
-﻿namespace MsfsToolbarGenerator.Services.Services.Impl {
+﻿namespace De.Berndnet2000.MsfsToolbarGenerator.Services.Impl {
     public class Tokenizer : ITokenizer {
         public string Replace(string text, string tokenValue) {
             text = text.Replace("#template#", tokenValue.ToLower());

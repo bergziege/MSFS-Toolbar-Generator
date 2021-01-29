@@ -11,5 +11,6 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main {
         bool IsCreationInProgress { get; }
         ReactiveCommand<Unit, Unit> StartToolbarCreationCommand { get; }
         string ToolbarName { get; set; }
+        ReactiveCommand<Unit, Unit> PackCommand { get; }
     }
 }

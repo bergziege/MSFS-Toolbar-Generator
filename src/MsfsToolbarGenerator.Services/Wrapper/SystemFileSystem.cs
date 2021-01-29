@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace MsfsToolbarGenerator.Services.Wrapper {
+namespace De.Berndnet2000.MsfsToolbarGenerator.Wrapper {
     public class SystemFileSystem : IFileSystem {
         public IList<FileInfo> GetAllFilesInDirectory(DirectoryInfo directory) {
             return directory.GetFiles("*.*", SearchOption.AllDirectories);

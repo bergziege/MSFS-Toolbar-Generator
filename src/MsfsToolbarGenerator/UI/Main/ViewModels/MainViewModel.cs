@@ -1,26 +1,29 @@
 ﻿using System.IO;
 using System.Reactive;
 using System.Threading.Tasks;
+using De.Berndnet2000.MsfsToolbarGenerator.Services;
 using De.Berndnet2000.MsfsToolbarGenerator.UI.FolderSelect.ViewCommands;
-using MsfsToolbarGenerator.Services.Services;
 using ReactiveUI;
 
 namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels {
     public class MainViewModel : ReactiveObject, IMainViewModel {
+        private readonly ILayoutCreationService _layoutCreationService;
         private readonly ISelectFolderViewCommand _selectFolderViewCommand;
         private readonly IToolbarCreationService _toolbarCreationService;
         private bool _isCreationInProgress;
+        private ReactiveCommand<Unit, Unit> _packCommand;
         private ReactiveCommand<Unit, Unit> _selectTemplateFolderCommand;
         private ReactiveCommand<Unit, Unit> _selectWorkspaceFolderCommand;
         private ReactiveCommand<Unit, Unit> _startToolbarCreationCommand;
         private DirectoryInfo _templateFolder;
-        private DirectoryInfo _workspaceFolder;
         private string _toolbarName;
+        private DirectoryInfo _workspaceFolder;
 
         public MainViewModel(ISelectFolderViewCommand selectFolderViewCommand,
-            IToolbarCreationService toolbarCreationService) {
+            IToolbarCreationService toolbarCreationService, ILayoutCreationService layoutCreationService) {
             _selectFolderViewCommand = selectFolderViewCommand;
             _toolbarCreationService = toolbarCreationService;
+            _layoutCreationService = layoutCreationService;
         }
 
         public DirectoryInfo WorkspaceFolder
@@ -70,6 +73,17 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels {
         {
             get => _toolbarName;
             set => this.RaiseAndSetIfChanged(ref _toolbarName, value);
+        }
+
+        public ReactiveCommand<Unit, Unit> PackCommand
+        {
+            get { return _packCommand ??= ReactiveCommand.CreateFromTask(OnPackAsync); }
+        }
+
+        private async Task OnPackAsync() {
+            IsCreationInProgress = true;
+            await _layoutCreationService.CreateLayout(WorkspaceFolder);
+            IsCreationInProgress = true;
         }
 
         private async Task OnStartCreateToolbarAsync() {

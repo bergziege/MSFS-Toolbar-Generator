@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>De.Berndnet2000.MsfsToolbarGenerator</RootNamespace>
   </PropertyGroup>
 
 </Project>

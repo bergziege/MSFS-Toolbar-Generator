@@ -32,7 +32,9 @@
             <TextBox Text="{Binding Path=ToolbarName}" MinWidth="150"/>
         </StackPanel>
         <Button Content="Start" Command="{Binding Path=StartToolbarCreationCommand}" />
+        <Button Content="Pack" Command="{Binding Path=PackCommand}" />
         <ProgressBar IsIndeterminate="True"
                      Visibility="{Binding Path=IsCreationInProgress, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <TextBlock Text="Layout.json creation inspired by: https://github.com/HughesMDflyer4/MSFSLayoutGenerator" FontWeight="Light" FontSize="7" HorizontalAlignment="Right"></TextBlock>
     </StackPanel>
 </Window>
