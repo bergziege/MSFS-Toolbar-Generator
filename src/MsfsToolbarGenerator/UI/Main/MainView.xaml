@@ -4,37 +4,80 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:designViewModels="clr-namespace:De.Berndnet2000.MsfsToolbarGenerator.UI.Main.DesignViewModels"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800">
+        Title="MSFS Toolbar Generator"
+        SizeToContent="Height"
+        Width="500">
     <d:DesignProperties.DataContext>
         <designViewModels:MainViewDesignViewModel />
     </d:DesignProperties.DataContext>
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
-    <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Template:" />
-            <Separator Width="5" Visibility="Hidden" />
-            <TextBlock Text="{Binding Path=TemplateFolder}" />
-            <Separator Width="5" Visibility="Hidden" />
-            <Button Content="..." Command="{Binding Path=SelectTemplateFolderCommand}" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Workspace:" />
-            <Separator Width="5" Visibility="Hidden" />
-            <TextBlock Text="{Binding Path=WorkspaceFolder}" />
-            <Separator Width="5" Visibility="Hidden" />
-            <Button Content="..." Command="{Binding Path=SelectWorkspaceFolderCommand}" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Toolbar Name:" />
-            <TextBox Text="{Binding Path=ToolbarName}" MinWidth="150"/>
-        </StackPanel>
-        <Button Content="Start" Command="{Binding Path=StartToolbarCreationCommand}" />
-        <Button Content="Pack" Command="{Binding Path=PackCommand}" />
-        <ProgressBar IsIndeterminate="True"
-                     Visibility="{Binding Path=IsCreationInProgress, Converter={StaticResource BooleanToVisibilityConverter}}" />
-        <TextBlock Text="Layout.json creation inspired by: https://github.com/HughesMDflyer4/MSFSLayoutGenerator" FontWeight="Light" FontSize="7" HorizontalAlignment="Right"></TextBlock>
-    </StackPanel>
+    <Grid IsSharedSizeScope="True" Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="firstColumn"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Template folder:" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="2" Text="{Binding Path=TemplateFolder}" VerticalAlignment="Center"/>
+            <Button Grid.Column="3" Command="{Binding Path=SelectTemplateFolderCommand}"
+                    Style="{StaticResource MaterialDesignOutlinedButton}">
+                <materialDesign:PackIcon Kind="FolderOpenOutline" />
+            </Button>
+        </Grid>
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="firstColumn"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Workspace folder:" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="2" Text="{Binding Path=WorkspaceFolder}" VerticalAlignment="Center"/>
+            <Button Grid.Column="3" Command="{Binding Path=SelectWorkspaceFolderCommand}"
+                    Style="{StaticResource MaterialDesignOutlinedButton}">
+                <materialDesign:PackIcon Kind="FolderOpenOutline" />
+            </Button>
+        </Grid>
+        <Grid Grid.Row="2" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="firstColumn"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Toolbar Name:" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="2" Text="{Binding Path=ToolbarName}" MinWidth="150" VerticalAlignment="Center"/>
+        </Grid>
+
+        
+        <Button Grid.Row="3" Content="Create" Command="{Binding Path=StartToolbarCreationCommand}" Margin="5"/>
+        <Button Grid.Row="4" Content="Pack" Command="{Binding Path=PackCommand}" Margin="5"/>
+        <ProgressBar Grid.Row="5" IsIndeterminate="True"
+                     Visibility="{Binding Path=IsCreationInProgress, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="5"/>
+        <TextBlock Grid.Row="6"
+                   FontWeight="Light" FontSize="9" HorizontalAlignment="Right">
+            Template by:
+            <Hyperlink NavigateUri="https://github.com/bymaximus/msfs2020-toolbar-window-template" RequestNavigate="HyperlinkOnRequestNavigate">https://github.com/bymaximus/msfs2020-toolbar-window-template</Hyperlink>
+        </TextBlock>
+        <TextBlock Grid.Row="7"
+                   FontWeight="Light" FontSize="9" HorizontalAlignment="Right">
+            Layout.json creation inspired by: 
+            <Hyperlink NavigateUri="https://github.com/HughesMDflyer4/MSFSLayoutGenerator" RequestNavigate="HyperlinkOnRequestNavigate">https://github.com/HughesMDflyer4/MSFSLayoutGenerator</Hyperlink>
+        </TextBlock>
+    </Grid>
 </Window>
