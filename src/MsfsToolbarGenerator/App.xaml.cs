@@ -13,8 +13,10 @@ namespace De.Berndnet2000.MsfsToolbarGenerator {
         protected override void OnStartup(StartupEventArgs e) {
             base.OnStartup(e);
             IFileSystem fileSystem = new SystemFileSystem();
-            IMainViewModel vm = new MainViewModel(new SelectFolderViewCommand(), new ToolbarCreationService(fileSystem, new Tokenizer()), new LayoutCreationService(fileSystem));
-            MainView view = new MainView();
+            IMainViewModel vm = new MainViewModel(new SelectFolderViewCommand(),
+                new ToolbarCreationService(fileSystem, new Tokenizer()), new LayoutCreationService(fileSystem),
+                new BuildService(fileSystem));
+            var view = new MainView();
             view.DataContext = vm;
             MainWindow = view;
             MainWindow.Show();

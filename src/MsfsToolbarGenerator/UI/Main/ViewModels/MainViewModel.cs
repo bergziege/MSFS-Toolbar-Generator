@@ -8,6 +8,7 @@ using ReactiveUI;
 namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels {
     public class MainViewModel : ReactiveObject, IMainViewModel {
         private readonly ILayoutCreationService _layoutCreationService;
+        private readonly IBuildService _buildService;
         private readonly ISelectFolderViewCommand _selectFolderViewCommand;
         private readonly IToolbarCreationService _toolbarCreationService;
         private bool _isCreationInProgress;
@@ -20,10 +21,12 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels {
         private DirectoryInfo _workspaceFolder;
 
         public MainViewModel(ISelectFolderViewCommand selectFolderViewCommand,
-            IToolbarCreationService toolbarCreationService, ILayoutCreationService layoutCreationService) {
+            IToolbarCreationService toolbarCreationService, ILayoutCreationService layoutCreationService,
+            IBuildService buildService) {
             _selectFolderViewCommand = selectFolderViewCommand;
             _toolbarCreationService = toolbarCreationService;
             _layoutCreationService = layoutCreationService;
+            _buildService = buildService;
         }
 
         public DirectoryInfo WorkspaceFolder
@@ -82,6 +85,7 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels {
 
         private async Task OnPackAsync() {
             IsCreationInProgress = true;
+            await _buildService.CopyBuildArtifacts(WorkspaceFolder);
             await _layoutCreationService.CreateLayout(WorkspaceFolder);
             IsCreationInProgress = false;
         }
