@@ -1,5 +1,6 @@
-﻿using System.Windows;
+using System.Windows;
 using De.Berndnet2000.MsfsToolbarGenerator.Services.Impl;
+using De.Berndnet2000.MsfsToolbarGenerator.UI.FileSelect.ViewCommands;
 using De.Berndnet2000.MsfsToolbarGenerator.UI.FolderSelect.ViewCommands;
 using De.Berndnet2000.MsfsToolbarGenerator.UI.Main;
 using De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels;
@@ -15,7 +16,7 @@ namespace De.Berndnet2000.MsfsToolbarGenerator {
             IFileSystem fileSystem = new SystemFileSystem();
             IMainViewModel vm = new MainViewModel(new SelectFolderViewCommand(),
                 new ToolbarCreationService(fileSystem, new Tokenizer()), new LayoutCreationService(fileSystem),
-                new BuildService(fileSystem));
+                new BuildService(fileSystem), new SelectFileViewCommand());
             var view = new MainView();
             view.DataContext = vm;
             MainWindow = view;

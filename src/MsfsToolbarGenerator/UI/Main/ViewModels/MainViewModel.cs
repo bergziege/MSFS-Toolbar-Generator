@@ -1,14 +1,18 @@
-﻿using System.IO;
+using System.IO;
 using System.Reactive;
 using System.Threading.Tasks;
 using De.Berndnet2000.MsfsToolbarGenerator.Services;
+using De.Berndnet2000.MsfsToolbarGenerator.UI.FileSelect.ViewCommands;
 using De.Berndnet2000.MsfsToolbarGenerator.UI.FolderSelect.ViewCommands;
 using ReactiveUI;
 
-namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels {
-    public class MainViewModel : ReactiveObject, IMainViewModel {
+namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels
+{
+    public class MainViewModel : ReactiveObject, IMainViewModel
+    {
         private readonly ILayoutCreationService _layoutCreationService;
         private readonly IBuildService _buildService;
+        private readonly ISelectFileViewCommand _selectFileViewCommand;
         private readonly ISelectFolderViewCommand _selectFolderViewCommand;
         private readonly IToolbarCreationService _toolbarCreationService;
         private bool _isCreationInProgress;
@@ -19,14 +23,19 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels {
         private DirectoryInfo _templateFolder;
         private string _toolbarName;
         private DirectoryInfo _workspaceFolder;
+        private string _fsPackageToolCommand;
+        private ReactiveCommand<Unit, Unit> _selectFsPackageToolCommand;
+        private FileInfo _fsPackageTool;
 
         public MainViewModel(ISelectFolderViewCommand selectFolderViewCommand,
             IToolbarCreationService toolbarCreationService, ILayoutCreationService layoutCreationService,
-            IBuildService buildService) {
+            IBuildService buildService, ISelectFileViewCommand selectFileViewCommand)
+        {
             _selectFolderViewCommand = selectFolderViewCommand;
             _toolbarCreationService = toolbarCreationService;
             _layoutCreationService = layoutCreationService;
             _buildService = buildService;
+            _selectFileViewCommand = selectFileViewCommand;
         }
 
         public DirectoryInfo WorkspaceFolder
@@ -43,7 +52,8 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels {
 
         public ReactiveCommand<Unit, Unit> SelectWorkspaceFolderCommand
         {
-            get {
+            get
+            {
                 return _selectWorkspaceFolderCommand ??= ReactiveCommand.Create(() =>
                 {
                     WorkspaceFolder = _selectFolderViewCommand.Execute();
@@ -53,12 +63,30 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels {
 
         public ReactiveCommand<Unit, Unit> SelectTemplateFolderCommand
         {
-            get {
+            get
+            {
                 return _selectTemplateFolderCommand ??= ReactiveCommand.Create(() =>
                 {
                     TemplateFolder = _selectFolderViewCommand.Execute();
                 });
             }
+        }
+
+        public ReactiveCommand<Unit, Unit> SelectFsPackageToolCommand
+        {
+            get
+            {
+                return _selectFsPackageToolCommand ??= ReactiveCommand.Create(() =>
+                {
+                    FsPackageTool = _selectFileViewCommand.Execute();
+                });
+            }
+        }
+
+        public string FsPackageToolParameters
+        {
+            get => _fsPackageToolCommand;
+            set => this.RaiseAndSetIfChanged(ref _fsPackageToolCommand, value);
         }
 
         public bool IsCreationInProgress
@@ -83,16 +111,26 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels {
             get { return _packCommand ??= ReactiveCommand.CreateFromTask(OnPackAsync); }
         }
 
-        private async Task OnPackAsync() {
+        public FileInfo FsPackageTool
+        {
+            get { return _fsPackageTool; }
+            private set { this.RaiseAndSetIfChanged(ref _fsPackageTool, value); }
+        }
+
+        private async Task OnPackAsync()
+        {
             IsCreationInProgress = true;
+            await _buildService.PackAsync(FsPackageTool, FsPackageToolParameters, WorkspaceFolder);
             await _buildService.CopyBuildArtifacts(WorkspaceFolder);
             await _layoutCreationService.CreateLayout(WorkspaceFolder);
             IsCreationInProgress = false;
         }
 
-        private async Task OnStartCreateToolbarAsync() {
+        private async Task OnStartCreateToolbarAsync()
+        {
             IsCreationInProgress = true;
             await _toolbarCreationService.CreateToolbarAsync(TemplateFolder, WorkspaceFolder, ToolbarName);
+            FsPackageToolParameters = _buildService.GetPackageToolParameters(WorkspaceFolder);
             IsCreationInProgress = false;
         }
     }
