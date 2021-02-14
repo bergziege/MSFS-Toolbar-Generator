@@ -1,6 +1,7 @@
 using System.IO;
 using System.Reactive;
 using System.Threading.Tasks;
+using De.Berndnet2000.MsfsToolbarGenerator.Properties;
 using De.Berndnet2000.MsfsToolbarGenerator.Services;
 using De.Berndnet2000.MsfsToolbarGenerator.UI.FileSelect.ViewCommands;
 using De.Berndnet2000.MsfsToolbarGenerator.UI.FolderSelect.ViewCommands;
@@ -68,6 +69,8 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels
                 return _selectTemplateFolderCommand ??= ReactiveCommand.Create(() =>
                 {
                     TemplateFolder = _selectFolderViewCommand.Execute();
+                    Settings.Default.TemplateFolderPath = TemplateFolder.FullName;
+                    Settings.Default.Save();
                 });
             }
         }
@@ -79,6 +82,8 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels
                 return _selectFsPackageToolCommand ??= ReactiveCommand.Create(() =>
                 {
                     FsPackageTool = _selectFileViewCommand.Execute();
+                    Settings.Default.FsPackageTool = FsPackageTool.FullName;
+                    Settings.Default.Save();
                 });
             }
         }
@@ -115,6 +120,19 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.ViewModels
         {
             get { return _fsPackageTool; }
             private set { this.RaiseAndSetIfChanged(ref _fsPackageTool, value); }
+        }
+
+        public void LoadUserSettings()
+        {
+            try
+            {
+                TemplateFolder = new DirectoryInfo(Settings.Default.TemplateFolderPath);
+                FsPackageTool = new FileInfo(Settings.Default.FsPackageTool);
+            }
+            catch (System.Exception)
+            {
+                /* do nothing for now */
+            }
         }
 
         private async Task OnPackAsync()

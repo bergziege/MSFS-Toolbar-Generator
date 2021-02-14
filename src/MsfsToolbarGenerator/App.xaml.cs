@@ -17,6 +17,7 @@ namespace De.Berndnet2000.MsfsToolbarGenerator {
             IMainViewModel vm = new MainViewModel(new SelectFolderViewCommand(),
                 new ToolbarCreationService(fileSystem, new Tokenizer()), new LayoutCreationService(fileSystem),
                 new BuildService(fileSystem), new SelectFileViewCommand());
+            vm.LoadUserSettings();
             var view = new MainView();
             view.DataContext = vm;
             MainWindow = view;

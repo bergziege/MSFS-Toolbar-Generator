@@ -17,5 +17,6 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main
         string ToolbarName { get; set; }
         ReactiveCommand<Unit, Unit> PackCommand { get; }
         FileInfo FsPackageTool { get; }
+        void LoadUserSettings();
     }
 }

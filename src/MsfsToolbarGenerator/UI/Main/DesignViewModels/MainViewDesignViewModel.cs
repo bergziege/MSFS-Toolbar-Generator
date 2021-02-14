@@ -17,5 +17,6 @@ namespace De.Berndnet2000.MsfsToolbarGenerator.UI.Main.DesignViewModels
         public string ToolbarName { get; set; } = "ToolbarName";
         public ReactiveCommand<Unit, Unit> PackCommand { get; } = ReactiveCommand.Create(() => { });
         public FileInfo FsPackageTool { get; } = new FileInfo("fspackagetool.exe");
+        public void LoadUserSettings() => throw new System.NotImplementedException();
     }
 }
