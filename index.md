@@ -6,10 +6,10 @@ The toolbar generator is a small windows desktop application running on .net 5 w
 
 - Windows with .net 5 runtime
 - MSFS SDK
-  - v1.0.0 is testet with the 0.9.0.0 steam version
+  - v1.0.0 had been tested with the 0.9.0.0 steam version
 
 ### Installation
-After downloading and unpacking the application from the link above or via the repository releases pages you should have the following:
+After downloading and extracting the application, from the link above or via the repository releases pages, you should have the following:
 
 - a "Template" folder
 - and "MsfsToolbarGenerator.exe"
@@ -20,11 +20,11 @@ You can copy those wherever you want.
 
 ![Image of the Generator](toolbar-generator-main.png)
 
-_Template folder_: Select the folder from the downloaded ZIP named "Template"
+_Template folder_: Select the folder from the extracted ZIP named "Template"
 
 _Workspace folder_: Any empty folder will do for now
 
-_Package tool_: Select the package tool from the MSFS SDK
+_Package tool_: Select the package tool from the MSFS SDK (in tools/bin)
 
 _Toolbar name_: The Name of the toolbar. Please do not use "Space" or any special character for now ;-)
 
@@ -33,6 +33,8 @@ _Toolbar name_: The Name of the toolbar. Please do not use "Space" or any specia
 _Packagetool parameters_: After "Create" this field will show the parameters used to call the package tool to build the toolbar. You may correct them now, but at your own responsibility!
 
 **_Pack_**: Calls the package tool, waits for it to compile, copies the build artifacts to their respective places and creates a layout.json file
+
+The "Pack" may take a while as the package tool does some magic in the background. You are good as long as the application does not close. The operation is finished when the progress bar disapears.
 
 ### Link the toolbar to a website
 
@@ -59,3 +61,9 @@ Why is my toolbar not in the sim:
 Why does my toolbar does not show the content I set it up for?
 
 - You might already have another toolbar with the same name so they are overwriting each other when loaded into the sim
+
+### Future versions may include:
+
+- use "Space" and other characters in the toolbar name
+- set the iframe url directly in the application
+- manage multiple toolbars and their urls
