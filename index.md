@@ -20,19 +20,19 @@ You can copy those wherever you want.
 
 ![Image of the Generator](toolbar-generator-main.png)
 
-Template folder: Select the folder from the downloaded ZIP named "Template"
+_Template folder_: Select the folder from the downloaded ZIP named "Template"
 
-Workspace folder: Any empty folder will do for now
+_Workspace folder_: Any empty folder will do for now
 
-Package Tool: Select the package tool from the MSFS SDK
+_Package tool_: Select the package tool from the MSFS SDK
 
-Toolbar Name: The Name of the toolbar. Please do not use "Space" or any special character for now ;-)
+_Toolbar name_: The Name of the toolbar. Please do not use "Space" or any special character for now ;-)
 
-Create: Copies the template files to the workspace folder and renames them
+**_Create_**: Copies the template files to the workspace folder and renames them
 
-Packagetool parameters: After "Create" this field will show the parameters used to call the package tool to build the toolbar. You may correct them now, but at your own responsibility!
+_Packagetool parameters_: After "Create" this field will show the parameters used to call the package tool to build the toolbar. You may correct them now, but at your own responsibility!
 
-Pack: Calls the package tool, waits for it to compile and copies the build artifacts to their respective places
+**_Pack_**: Calls the package tool, waits for it to compile, copies the build artifacts to their respective places and creates a layout.json file
 
 ### Link the toolbar to a website
 
@@ -49,5 +49,13 @@ Keep in mind that only simple sites currently work within the sim. So dont try t
 
 Just copy the whole workspace directory into your community folder and name it accordingly.
 
-### What can go wrong
+### Troubleshooting
 
+Why is my toolbar not in the sim:
+
+- You might need to remove the "build" folder from the toolbar
+  - Works on my system without removing it
+  
+Why does my toolbar does not show the content I set it up for?
+
+- You might already have another toolbar with the same name so they are overwriting each other when loaded into the sim
