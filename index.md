@@ -62,8 +62,13 @@ Why does my toolbar does not show the content I set it up for?
 
 - You might already have another toolbar with the same name so they are overwriting each other when loaded into the sim
 
-### Future versions may include:
+The application suddenly closes!
 
-- use "Space" and other characters in the toolbar name
-- set the iframe url directly in the application
-- manage multiple toolbars and their urls
+- There currently is no error handling or whatsoever. So any little thing thats not going as expected might kill the application.
+
+### Future versions (maybe) include:
+
+- Error handling and build log
+- Use "Space" and other characters in the toolbar name
+- Set the iframe url directly in the application
+- Manage multiple toolbars and their urls
